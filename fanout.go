@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func mergeTwo(in1, in2 <-chan int) <-chan int {
+func mergeTwo(in1 <-chan int, in2 <-chan int) <-chan int {
 	out := make(chan int)
 	go func() {
 		defer close(out)
@@ -33,4 +33,5 @@ func main() {
 	for val := range mergeTwo(in1, in2) {
 		fmt.Println(val)
 	}
+	fmt.Println("Done.")
 }

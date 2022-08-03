@@ -7,7 +7,7 @@ func mergeTwo(in1, in2 <-chan int) <-chan int {
 	go func() {
 		defer close(out)
 
-		for in1 != nil && in2 != nil {
+		for in1 != nil || in2 != nil {
 			select {
 			case val, ok := <-in1:
 				if !ok {
